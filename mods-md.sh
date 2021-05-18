@@ -11,3 +11,4 @@ ls /home/server/survival/plugins | grep .py >> /home/server/scripts/files/mods.m
 printf '```\n# carpet.conf\n```\n' >> /home/server/scripts/files/mods.md
 cat /home/server/survival/server/world/carpet.conf >> /home/server/scripts/files/mods.md
 echo '```'  >> /home/server/scripts/files/mods.md
+gist-paste -u 7f80ab2b67a780f52a46bfa2e2808c95 /home/server/scripts/files/mods.md 
