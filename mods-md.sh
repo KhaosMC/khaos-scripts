@@ -1,7 +1,7 @@
 # Script to generate a mods.md file for our gist, created by Ainsley
 #!/bin/bash
-rm mods.md
-touch mods.md
+rm /home/server/scripts/files/mods.md
+touch /home/server/scripts/files/mods.md
 printf '# Survival mods\n```' >> mods.md
 ls /home/server/survival/server/mods >> mods.md
 printf '```\n# Creative mods\n```' >> mods.md
