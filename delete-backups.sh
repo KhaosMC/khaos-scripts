@@ -1,5 +1,5 @@
-# Script by vktec to delete any backups older than 2 days
 #!/bin/sh
+# Script by vktec to delete any backups older than 2 days
 for server in survival creative; do
     cd "/home/server/$server/backups"
     for f in *.tar.lz; do
