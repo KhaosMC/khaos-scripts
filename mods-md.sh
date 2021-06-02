@@ -1,5 +1,5 @@
-# Script to generate a mods.md file for our gist, created by Ainsley
 #!/bin/bash
+# Script to generate a mods.md file for our gist, created by Ainsley
 rm /home/server/scripts/files/mods.md
 touch /home/server/scripts/files/mods.md
 printf '# Survival mods\n```java\n' >> /home/server/scripts/files/mods.md
