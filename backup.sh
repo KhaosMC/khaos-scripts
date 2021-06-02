@@ -1,25 +1,16 @@
 #!/bin/bash
 # Simple backup script by vktec
 # Backup script to backup Survival and Creative server, needs lzip
+tell() {
+    for server in smp cmp; do
+        printf 'tellraw @a {"text":"%s","bold":"true"}\n\n' "$*" | dtach -p "/home/server/sockets/$server"
+    done
+}
+backup() {
+    tell "\u$3[Hourly Backup] \u${4}Starting to backup $2"
+    cd "/home/server/$1" && tar --lzip -cf "backups/$(date -u +%Y-%m-%dT%H:%M:%S).tar.lz" server/world/
+    tell "\u$3[Hourly Backup] \u${4}Finished backing up $2"
+}
 
-# Survival
-echo "tellraw @a {\"text\":\"\u00A71[Hourly Backup] \u00A79Starting to backup SMP\",\"bold\":\"true\"}" | dtach -p /home/server/sockets/smp
-echo | dtach -p /home/server/sockets/smp
-echo "tellraw @a {\"text\":\"\u00A71[Hourly Backup] \u00A79Starting to backup SMP\",\"bold\":\"true\"}" | dtach -p /home/server/sockets/cmp
-echo | dtach -p /home/server/sockets/cmp
-cd /home/server/survival && tar --lzip -cf "backups/$(date -u +%Y-%m-%dT%H:%M:%S).tar.lz" server/world/
-echo "tellraw @a {\"text\":\"\u00A71[Hourly Backup] \u00A79Finished backing up SMP\",\"bold\":\"true\"}" | dtach -p /home/server/sockets/smp
-echo | dtach -p /home/server/sockets/smp
-echo "tellraw @a {\"text\":\"\u00A71[Hourly Backup] \u00A79Finished backing up SMP\",\"bold\":\"true\"}" | dtach -p /home/server/sockets/cmp
-echo | dtach -p /home/server/sockets/cmp
-
-# Creative
-echo "tellraw @a {\"text\":\"\u00A75[Hourly Backup] \u00A7dStarting to backup CMP\",\"bold\":\"true\"}" | dtach -p /home/server/sockets/smp
-echo | dtach -p /home/server/sockets/smp
-echo "tellraw @a {\"text\":\"\u00A75[Hourly Backup] \u00A7dStarting to backup CMP\",\"bold\":\"true\"}" | dtach -p /home/server/sockets/cmp
-echo | dtach -p /home/server/sockets/cmp
-cd /home/server/creative && tar --lzip -cf "backups/$(date -u +%Y-%m-%dT%H:%M:%S).tar.lz" server/world/
-echo "tellraw @a {\"text\":\"\u00A75[Hourly Backup] \u00A7dFinished backing up CMP\",\"bold\":\"true\"}" | dtach -p /home/server/sockets/smp
-echo | dtach -p /home/server/sockets/smp
-echo "tellraw @a {\"text\":\"\u00A75[Hourly Backup] \u00A7dFinished backing up CMP\",\"bold\":\"true\"}" | dtach -p /home/server/sockets/cmp
-echo | dtach -p /home/server/sockets/cmp
+backup survival SMP 00a71 00a79
+backup creative CMP 00a75 00a7d
