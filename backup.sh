@@ -8,7 +8,7 @@ tell() {
 }
 backup() {
     tell "\u$3[Hourly Backup] \u${4}Starting to backup $2"
-    cd "/home/server/$1" && tar --lzip -cf "backups/$(date -u +%Y-%m-%dT%H:%M:%S).tar.lz" server/world/
+    cd "/home/server/$1" && ionice -c3 tar --lzip -cf "backups/$(date -u +%Y-%m-%dT%H:%M:%S).tar.lz" server/world/
     tell "\u$3[Hourly Backup] \u${4}Finished backing up $2"
 }
 
