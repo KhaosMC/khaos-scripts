@@ -1,0 +1,5 @@
+#!/bin/bash
+# Small script to upload files to https://mclo.gs, requires jq to be installed
+# Example usage: log latest.log
+# Example output: https://mclo.gs/ABCDEFG
+curl -sSL -F content="@$1" https://api.mclo.gs/1/log | jq -r '"https://mclo.gs/" + .id'
